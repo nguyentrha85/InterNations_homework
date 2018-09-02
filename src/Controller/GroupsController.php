@@ -83,7 +83,8 @@ class GroupsController extends AbstractController
      */
     public function delete(Request $request, Groups $group): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$group->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$group->getId(), $request->request->get('_token'))
+            && (count($group->getUsers()) == 0)) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($group);
             $em->flush();
