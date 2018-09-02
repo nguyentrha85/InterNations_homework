@@ -51,7 +51,10 @@ class GroupsController extends AbstractController
      */
     public function show(Groups $group): Response
     {
-        return $this->render('groups/show.html.twig', ['group' => $group]);
+        return $this->render('groups/show.html.twig', [
+            'group' => $group,
+            'showDeleteButton' => count($group->getUsers()) == 0
+        ]);
     }
 
     /**
@@ -71,6 +74,7 @@ class GroupsController extends AbstractController
         return $this->render('groups/edit.html.twig', [
             'group' => $group,
             'form' => $form->createView(),
+            'showDeleteButton' => count($group->getUsers()) == 0
         ]);
     }
 

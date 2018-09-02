@@ -8,6 +8,7 @@
     {{ include('groups/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('groups_index') }}">back to list</a>
-
-    {{ include('groups/_delete_form.html.twig') }}
+    {% if showDeleteButton %}
+        {{ include('groups/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
