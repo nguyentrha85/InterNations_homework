@@ -20,6 +20,8 @@ final class Version20180902194316 extends AbstractMigration
         $this->addSql('CREATE TABLE users_groups (users_id INT NOT NULL, groups_id INT NOT NULL, INDEX IDX_FF8AB7E067B3B43D (users_id), INDEX IDX_FF8AB7E0F373DCF (groups_id), PRIMARY KEY(users_id, groups_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE users_groups ADD CONSTRAINT FK_FF8AB7E067B3B43D FOREIGN KEY (users_id) REFERENCES users (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE users_groups ADD CONSTRAINT FK_FF8AB7E0F373DCF FOREIGN KEY (groups_id) REFERENCES groups (id) ON DELETE CASCADE');
+        $this->addSql('INSERT INTO `groups` (`id`, `name`, `description`) VALUES (NULL, "admin", "admin group")');
+        $this->addSql('INSERT INTO `users` (`id`, `username`, `password`, `name`) VALUES (NULL, "admin", "$2a$08$jHZj/wJfcVKlIwr5AvR78euJxYK7Ku5kURNhNx.7.CSIJ3Pq6LEPC", "Admin User");');
     }
 
     public function down(Schema $schema) : void
